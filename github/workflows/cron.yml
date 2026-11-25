@@ -1,0 +1,26 @@
+name: Weathercloud Auto Visit
+
+on:
+  schedule:
+    # Spouští se každých 10 minut
+    - cron: '*/10 * * * *'
+  # Umožňuje i ruční spuštění pro otestování
+  workflow_dispatch:
+
+jobs:
+  visit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stažení kódu
+        uses: actions/checkout@v4
+
+      - name: Příprava Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalace prohlížeče Playwright
+        run: npm install playwright && npx playwright install chromium
+
+      - name: Otevření stránky Weathercloud
+        run: node visit.js
