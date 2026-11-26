@@ -2,7 +2,7 @@ name: Weathercloud Auto Visit
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/75 * * * *'
   workflow_dispatch:
 
 jobs:
